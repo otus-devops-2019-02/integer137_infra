@@ -19,5 +19,7 @@ ssh someinternalhost
 
 "С помощью сервиса xip.io и Let's Encrypt реализовано использование сертификата"
 https://34.76.58.42.xip.io
+
+"Файлы setupvpn.sh и cloud-bastion.ovpn добавлены"
 bastion_IP = 34.76.58.42
 someinternalhost_IP = 10.128.0.2

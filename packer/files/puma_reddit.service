@@ -1,0 +1,10 @@
+[Unit]
+Description = Start Puma_reddit Service
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/home/appuser/puma_start.sh
+
+[Install]
+WantedBy=multi-user.target

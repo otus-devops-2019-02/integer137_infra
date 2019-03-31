@@ -1,6 +1,55 @@
 # integer137_infra
 integer137 Infra repository
 
+##"ДЗ packer-base"
+"Создан шаблон Packer ubuntu16.json"
+
+"Шаблон параметризирован, создан файл variables.json"
+````
+{
+    "project_id": "infra-235107",
+    "source_image_family": "ubuntu-1604-lts"
+}
+````
+"Создан образ VM семейства reddit-base"
+
+"Выполнено задание со (*)"
+
+"Создан шаблон Packer immutable.json"
+"Созданы файлы puma_reddit.service и puma_start.sh для автозапуска службы через systemd unit"
+````
+[Unit]
+Description = Start Puma_reddit Service
+After=network.target
+
+[Service]
+Type=forking
+ExecStart=/home/appuser/puma_start.sh
+
+[Install]
+WantedBy=multi-user.target
+````
+````
+#!/bin/sh
+cd /home/appuser/reddit
+echo "Запускаем сервер приложения..."
+puma -d
+````
+"Создан образ VM семейства reddit-full"
+
+"Для ускорения запуска VM создан скрипт create-reddit-vm.sh"
+````
+#!/bin/sh
+gcloud compute instances create reddit-app1 \
+	--boot-disk-size=10GB \
+	--image-family reddit-full \
+	--image-project=infra-235107 \
+	--machine-type=f1-micro \
+	--zone europe-west1-b \
+	--tags puma-server \
+	--restart-on-failure
+````
+
 ##"ДЗ cloud-testapp"
 "Добавлены скрипты install_ruby.sh, install_mongodb.sh и deply.sh"
 testapp_IP = 35.195.24.181
@@ -24,7 +73,7 @@ gcloud compute instances create reddit-app \
 	--image-project=ubuntu-os-cloud \
 	--machine-type=g1-small \
 	--tags puma-server \
-	--metadata startup-script-url=gs://integer137_infra/startup_script.sh
+	--metadata startup-script-url=gs://integer137_infra/startup_script.sh \
 	--restart-on-failure
 ````	
 "Добавлена команда для создания правила firewall с помощью gcloud"

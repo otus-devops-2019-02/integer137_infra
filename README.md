@@ -1,6 +1,37 @@
 # integer137_infra
 integer137 Infra repository
 
+##"ДЗ terraform-1"
+"Произведена установка Terraform"
+
+"На основе конфигурационных файлов Terraform создан инстанс ВМ, использован образ reddit-base"
+
+"Произведена требуемая параметризация"
+
+"Определены input переменные"
+
+"Выполнена команда terraform fmt"
+
+"Описано добавление нескольких ключей пользователей"
+````
+resource "google_compute_project_metadata" "ssh_keys" {
+  metadata {
+  ssh-keys = "appuser:${file(var.public_key_path)}\nappuser1:${file(var.public_key_path)}\nappuser2:${file(var.public_key_path)}\nappuser3:${file(var.public_key_path)}"
+}
+}
+````
+"Через web-интерфейс добавлен пользователь appuser_web в метаданные проекта, после выполнения ````terraform apply```` данный пользователь удаляется"
+
+"Создан конфигурационный файл lb.tf в котором описано создание http балансировщика"
+
+"В output переменные добавлен адрес балансировщика"
+
+"Создан инстанс reddit-app2, добавлен в балансировщик. В output переменные добавлен ip-адрес второго инстанса."
+
+"При такой конфигурации приложения получаем различные базы данных на 2-х инстансах, избыточность кода в конфигурационном файле main.tf"
+
+"Удалено описание reddit-app2, задано количество инстансов через параметр count"
+
 ##"ДЗ packer-base"
 "Создан шаблон Packer ubuntu16.json"
 
@@ -75,7 +106,7 @@ gcloud compute instances create reddit-app \
 	--tags puma-server \
 	--metadata startup-script-url=gs://integer137_infra/startup_script.sh \
 	--restart-on-failure
-````	
+````
 "Добавлена команда для создания правила firewall с помощью gcloud"
 ````
 gcloud compute firewall-rules create default-puma-server  \
@@ -109,7 +140,7 @@ nano ~/.ssh/config \
 	ForwardAgent yes \
 ````
 ````
-ssh someinternalhost 
+ssh someinternalhost
 ````
 "С помощью сервиса xip.io и Let's Encrypt реализовано использование сертификата"
 https://34.76.58.42.xip.io

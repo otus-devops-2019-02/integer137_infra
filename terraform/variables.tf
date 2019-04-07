@@ -8,6 +8,12 @@ variable region {
   # Значение по умолчанию
   default = "europe-west1"
 }
+variable count {
+  description = "count"
+
+  # Значение по умолчанию
+  default = "1"
+}
 
 variable public_key_path {
   # Описание переменной

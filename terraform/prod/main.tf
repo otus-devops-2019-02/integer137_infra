@@ -8,6 +8,7 @@ module "app" {
   source          = "../modules/app"
   public_key_path = "${var.public_key_path}"
   app_disk_image  = "${var.app_disk_image}"
+  db_internal_ip  = "${module.db.db_internal_ip}:27017"
 }
 
 module "db" {

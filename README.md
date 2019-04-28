@@ -1,6 +1,33 @@
 # integer137_infra
 integer137 Infra repository
 
+##"ДЗ ansible-1"
+"Провели установку Ansible."
+
+"Создали инвентори файл для управления нашими хостами."
+
+"Проверка работы командой: ````ansible dbserver -i inventory -m ping````."
+
+"Создали файл конфигурации ansible.cfg для указания параметров"
+
+"Проверка работы командой: ````ansible dbserver -m command -a uptime````."
+
+"Указываем в инвентори файле группы хостов"
+
+"Проверка работы командой: ````ansible app -m ping````."
+
+"Создали файл YAML Inventory. Проверка ````ansible all -m ping -i inventory.yml````."
+
+"Создаем простой плейбук clone.yml."
+
+"Выполняем ````ansible-playbook clone.yml```` для клонирования репозитория."
+
+"Выполняем ````ansible app -m command -a 'rm -rf ~/reddit'```` после этого запускаем плейбук clone.yml. Видим статус changed при выполнении таска clone repo. Так как директория reddit была удалена, таск копирует ее вновь, после этого возникает статус changed."
+
+"Создан файл inventory.json. Команда ````ansible all -m ping```` выполняется успешно."
+
+"inventory.json генерируется на лету bash-скриптом inventory.sh."
+
 ##"ДЗ terraform-2"
 "Определили ресурс файервола. Не удается создать правило, т.к. имя уже имеющегося совпадает с новым."
 

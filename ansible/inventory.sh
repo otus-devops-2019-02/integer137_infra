@@ -9,12 +9,13 @@ EOF
 
 for (( i; i <= j; i++ ))
 do
-host_name=`gcloud compute instances list | awk ' {print $1,$5} ' | sed -n ${i}p | awk ' {print $1} '`
+hn=`gcloud compute instances list | awk ' {print $1,$5} ' | sed -n ${i}p | awk ' {print $1} '`
 ip_address=`gcloud compute instances list | awk ' {print $1,$5} ' | sed -n ${i}p | awk ' {print $2} '`
+ghn=`gcloud compute instances list | awk ' {print $1,$5} ' | sed -n ${i}p | awk ' {print $1} ' | sed -n '/.*-/s///p'`
 cat <<EOF >> inventory.json
-    "$host_name": {
+    "$ghn": {
         "hosts": {
-            "$host_name": {
+            "$hn": {
               "ansible_host": "$ip_address"
             }
         }

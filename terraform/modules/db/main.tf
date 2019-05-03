@@ -23,13 +23,13 @@ resource "google_compute_instance" "db" {
     agent       = false
     private_key = "${file(var.private_key_path)}"
 }
-  provisioner "remote-exec" {
-    inline = [
-      "sudo sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf",
-      "sudo service mongod stop",
-      "sudo service mongod start",
-    ]
-  }
+#  provisioner "remote-exec" {
+#    inline = [
+#      "sudo sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf",
+#      "sudo service mongod stop",
+#      "sudo service mongod start",
+#    ]
+#  }
 }
 # Правило firewall
 resource "google_compute_firewall" "firewall_mongo" {

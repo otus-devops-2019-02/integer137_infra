@@ -2,14 +2,14 @@
     "app": {
         "hosts": {
             "reddit-app": {
-              "ansible_host": "104.199.5.159"
+              "ansible_host": "35.205.250.63"
             }
         }
     },
     "db": {
         "hosts": {
             "reddit-db": {
-              "ansible_host": "35.205.250.63"
+              "ansible_host": "104.199.5.159"
             }
         }
     }

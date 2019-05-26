@@ -1,0 +1,9 @@
+plugin: gcp_compute
+projects:
+  - infra-235107
+filters:
+groups:
+  db: "'db' in name"
+  app: "'app' in name"
+auth_kind: serviceaccount
+service_account_file: /home/user/Infra-33038b1fb79c.json
